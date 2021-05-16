@@ -193,7 +193,7 @@ def cookie_to_cookiejar(cookies: str):
 def back0day(name, title):
     """该函数用来为猫站游戏区获取去除掉游戏名后的资源
         name为游戏名，而title为种子资源的名称"""
-    raw_name = re.sub(r'[:._–\-\s&]', '', name)
+    raw_name = re.sub(r'[+:._–\-\s&]', '', name)
     pattern = '.*?'.join(raw_name)
     pattern = re.compile(pattern, re.I)
     raw_title = re.sub(pattern, '', title)
