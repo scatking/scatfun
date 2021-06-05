@@ -202,8 +202,21 @@ def back0day(name, title):
     return raw_title
 
 
+def raw_input():
+    """接收用户多行输入，以gzy结尾结束；"""
+    buffer = []
+    while True:
+        print("> ", end="")
+        line = input()
+        if line == ".":
+            break
+        buffer.append(line)
+    multiline_string = "\n".join(buffer)
+    print(multiline_string)
+
+
 if __name__ == '__main__':
-    pass
+    raw_input()
     # headers = {
     #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0',
     #     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',

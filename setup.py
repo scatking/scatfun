@@ -5,7 +5,7 @@ with open("requirements.txt") as fh:
 
 setup(
     name='scatfunc',
-    version='0.2.4',
+    version='0.2.5',
     url='https://github.com/scatking/scatfun',
     author='scatking',
     author_email='scatking@email.com',
