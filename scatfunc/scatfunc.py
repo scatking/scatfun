@@ -212,7 +212,7 @@ def raw_input():
             break
         buffer.append(line)
     multiline_string = "\n".join(buffer)
-    print(multiline_string)
+    return multiline_string
 
 
 if __name__ == '__main__':
