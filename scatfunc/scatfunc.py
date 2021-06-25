@@ -208,11 +208,25 @@ def raw_input():
     while True:
         print("> ", end="")
         line = input()
-        if line == ".":
+        if line == "gzy":
             break
         buffer.append(line)
     multiline_string = "\n".join(buffer)
     return multiline_string
+
+
+def count_comparison(data, peers, target='[/url]'):
+    results = data.split(target)
+    output = ''
+    counter = 0
+    for i in results:
+        counter += 1
+        i += target
+        output += i
+        if counter == peers:
+            output += '\n'
+            counter = 0
+    return output[:-6]
 
 
 if __name__ == '__main__':
