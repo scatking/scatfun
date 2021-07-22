@@ -68,9 +68,6 @@ def steam_api(game):
     except KeyError:
         gameinfo = get_sp_data()
         ban_china = '[size=5][color=#ff0000]注意：锁国区[/color][/size=5]'
-    gameinfo2 = requests.get(
-        'https://api.rhilip.info/tool/movieinfo/gen?url=https://store.steampowered.com/app/{}'.format(game)).json()
-    type = gameinfo['type'].upper().replace('GAME', '游戏本体')
     date = gameinfo['release_date']['date']
     year = re.search(r'\d{4}', date.split("年")[0]).group(0)
     store = 'https://store.steampowered.com/app/{}'.format(game)
@@ -88,7 +85,9 @@ def steam_api(game):
     except:
         trailer = ''
     name = gameinfo['name']
-    recfield = "\n\n[center][b][u]配置要求[/u][/b][/center]\n\n [quote]\n{}[/quote]".format(gameinfo2['sysreq'][0])
+    pc_requirements = gameinfo['pc_requirements']
+    recfield = "\n\n[center][b][u]配置要求[/u][/b][/center]\n\n [quote]\n{}[/quote]".format(
+        html2bb(pc_requirements['minimum'])+'\n'+(html2bb(pc_requirements['recommended']) if 'recommended' in pc_requirements else ''))
     cover = "[center][img]" + gameinfo["header_image"].split("?")[0] + "[/img][/center]\n"
     about = gameinfo['about_the_game'] if gameinfo['about_the_game'] != '' else gameinfo['detailed_description']
     about = "{}[center][b][u]关于游戏[/u][/b][/center]\n [b]发行日期[/b]：${}\n\n[b]商店链接[/b]：${}\n\n[b]游戏标签[/b]：${}\n\n{}".format(
@@ -216,6 +215,7 @@ def raw_input():
 
 
 def count_comparison(data, peers, target='[/url]'):
+    """PT站对比图参与对比组组名生成器"""
     results = data.split(target)
     output = ''
     counter = 0
@@ -230,7 +230,7 @@ def count_comparison(data, peers, target='[/url]'):
 
 
 if __name__ == '__main__':
-    raw_input()
+    steam_api('https://store.steampowered.com/app/385800/NEKOPARA_Vol_0/')
     # headers = {
     #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0',
     #     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
